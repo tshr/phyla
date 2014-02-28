@@ -12,7 +12,17 @@ ActiveRecord::Base.establish_connection(
 class Kingdom < ActiveRecord::Base
 end
 
-get '/' do
-  kingdoms = Kingdom.all
-  binding.pry
+class TaxonUnitType < ActiveRecord::Base
 end
+
+class TaxonomicUnit < ActiveRecord::Base
+end
+
+class Vernacular < ActiveRecord::Base
+end
+
+binding.pry
+
+# get '/' do
+#   binding.pry
+# end
