@@ -4,10 +4,6 @@ class TaxonomicUnit < ActiveRecord::Base
     parent_tsn ? self.class.find(parent_tsn) : nil
   end
 
-  def get_parent_id
-    get_parent.id
-  end
-
   def get_ancestors
     ancestors = []
     taxon_unit = self
