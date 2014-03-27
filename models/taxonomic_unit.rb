@@ -1,7 +1,7 @@
 class TaxonomicUnit < ActiveRecord::Base
 
   def get_parent
-    parent_tsn ? self.class.find(parent_tsn) : nil
+    parent_tsn != 0 ? self.class.find(parent_tsn) : nil
   end
 
   def get_ancestors
