@@ -17,7 +17,7 @@ class TaxonomicUnit < ActiveRecord::Base
     ancestors
   end
 
-  def get_ancestors_ids
+  def get_ancestor_ids
     get_ancestors.map{|a| a.id}
   end
 end
