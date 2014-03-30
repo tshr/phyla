@@ -1,5 +1,7 @@
 class TaxonomicUnit < ActiveRecord::Base
 
+  belongs_to :kingdom
+
   def get_parent
     parent_tsn != 0 ? self.class.find(parent_tsn) : nil
   end
