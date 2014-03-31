@@ -20,4 +20,12 @@ class TaxonomicUnit < ActiveRecord::Base
   def get_ancestor_ids
     get_ancestors.map{|a| a.id}
   end
+
+  def common_ancestor(taxon_unit)
+    (get_ancestors & taxon_unit.get_ancestors).first
+  end
+
+  def is_ancestor_of?(taxon_unit)
+    taxon_unit.get_ancestor_ids.include?(id)
+  end
 end
