@@ -28,4 +28,8 @@ class TaxonomicUnit < ActiveRecord::Base
   def is_ancestor_of?(taxon_unit)
     taxon_unit.get_ancestor_ids.include?(id)
   end
+
+  def get_children
+    self.class.where(parent_tsn: tsn)
+  end
 end
