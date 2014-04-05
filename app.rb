@@ -19,6 +19,5 @@ get '/taxonomic_unit/:tsn' do
   content_type :json
 
   species = TaxonomicUnit.find_by(tsn: params[:tsn])
-  response = species || { message: "Could not find a species with this id" }
-  response.to_json
+  species ? species.to_json : (status 404)
 end
