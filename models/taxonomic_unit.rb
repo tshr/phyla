@@ -2,7 +2,7 @@ class TaxonomicUnit < ActiveRecord::Base
 
   belongs_to :kingdom
 
-  def get_parent
+  def parent
     parent_tsn != 0 ? self.class.find(parent_tsn) : nil
   end
 
@@ -11,7 +11,7 @@ class TaxonomicUnit < ActiveRecord::Base
     taxon_unit = self
 
     while taxon_unit.parent_tsn != 0 do
-      taxon_unit = taxon_unit.get_parent
+      taxon_unit = taxon_unit.parent
       ancestors << taxon_unit
     end
     ancestors
@@ -31,5 +31,23 @@ class TaxonomicUnit < ActiveRecord::Base
 
   def get_children
     self.class.where(parent_tsn: tsn)
+  end
+
+  # def get_descendents
+
+  #   descendants = []
+  #   children = get_children
+
+  #   descendants += children
+
+  #   children.each do |child|
+  #     descendants += child.get_descendents
+  #   end
+  #   descendants
+  # end
+
+  def to_json
+    keys = ["tsn", "unit_name1", "parent_tsn", "kingdom_id", "complete_name"]
+    self.attributes.filter(*keys).to_json
   end
 end
